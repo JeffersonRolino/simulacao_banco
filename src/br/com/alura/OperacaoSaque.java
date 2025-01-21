@@ -12,14 +12,14 @@ public class OperacaoSaque implements Runnable {
         this.valor = valor;
     }
 
-    public void executa() {
+    public synchronized void executa() {
         System.out.println("Iniciando operação de saque.");
         var saldoAtual = conta.getSaldo();
 
         if (saldoAtual.compareTo(valor) >= 0) {
             System.out.println("Debitando valor da conta");
             conta.debitaSaldo(valor);
-            System.out.println("Saldo atual: " +conta.getSaldo());
+            System.out.println("Saldo atual: " + conta.getSaldo());
         }
         System.out.println("Finalizando operação de saque.");
     }
