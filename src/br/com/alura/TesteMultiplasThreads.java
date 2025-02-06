@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 public class TesteMultiplasThreads {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(14400);
+        ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
         Instant inicio = Instant.now();
 
         try(ExecutorService e = executor){
@@ -20,6 +20,6 @@ public class TesteMultiplasThreads {
         Instant fim = Instant.now();
 
         Duration duracao = Duration.between(inicio, fim);
-        System.out.println("Duração: " + duracao.getSeconds());
+        System.out.println("Duração: " + duracao.toMillis() + "ms");
     }
 }
